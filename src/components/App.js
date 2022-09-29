@@ -15,7 +15,7 @@ function App() {
       setCurrentQuestion(null);
     }
     if (correct) {
-      setScore((score) => score + 1);
+      setScore((score) => score + 1); 
     }
   }
 
@@ -26,6 +26,7 @@ function App() {
           <Question
             question={currentQuestion}
             onAnswered={handleQuestionAnswered}
+            // setQuestions={setQuestions}
           />
         ) : (
           <>

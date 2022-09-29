@@ -1,16 +1,36 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 function Question({ question, onAnswered }) {
-  const [timeRemaining, setTimeRemaining] = useState(10);
+  // const [timeRemaining, setTimeRemaining] = useState(10);
 
   // add useEffect code
+  const maximumTime = 10;
+  const [timeRemaining, setTimeRemaining] = useState(maximumTime);
+
+  useEffect(() => {
+    const intervalId = setInterval(() => {
+      setTimeRemaining(maximumTime => maximumTime > 0 ? maximumTime - 1 : maximumTime = 10);
+      // console.log(timeRemaining)
+    }, 1000);
+    
+
+    return () => {
+      clearTimeout(intervalId);
+      // console.log("cleanup")
+    };
+  }, [timeRemaining]);
 
   function handleAnswer(isCorrect) {
     setTimeRemaining(10);
     onAnswered(isCorrect);
   }
 
-  const { id, prompt, answers, correctIndex } = question;
+  if (timeRemaining === 0) {
+    onAnswered(false)
+    return <p>Loading...</p>
+  }
+
+  const { id, prompt, answers, correctIndex } = question; 
 
   return (
     <>

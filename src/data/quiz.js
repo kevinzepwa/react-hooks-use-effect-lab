@@ -11,7 +11,7 @@ const questions = [
     prompt: "A React component is a function that returns ______.",
     answers: ["HTML", "JSX", "props", "state"],
     correctIndex: 1,
-  },
+  }, 
   {
     id: 3,
     prompt:
